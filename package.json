@@ -1,13 +1,23 @@
 {
+<<<<<<< HEAD
   "name": "tiendaMovil",
   "version": "1.0.0",
   "description": "Apiservicios tiendaMovil",
+=======
+  "name": "apirest_inmuebles",
+  "version": "1.0.0",
+  "description": "Apis-Rest inmuebles in docker-compose, content nodeJS and MongoDB",
+>>>>>>> 6af5a56a0d2da9a4d5f7664bee7cca1ea7e9c4b6
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+<<<<<<< HEAD
 
+=======
+  "author": "GonzaloEspinozaCh",
+>>>>>>> 6af5a56a0d2da9a4d5f7664bee7cca1ea7e9c4b6
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.19.0",

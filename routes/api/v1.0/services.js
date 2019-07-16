@@ -3,8 +3,6 @@
 const mogoose =require('mongoose')
 const connect =  require('../../../database/collections/connect')
 const Registro = require('../../../database/collections/users')
-
-//se aumento para home
 const Producto = require('../../../database/collections/productos')
 const Img = require('../../../database/collections/img')
 const express = require('express')
@@ -15,7 +13,7 @@ const HOST = require('../../../database/collections/HOST')
 
 //////////////////////// multer para imagenes
 const multer = require('multer');
-//se aumento fs
+
 const fs = require('fs')
 
 const route = express.Router()
@@ -27,7 +25,6 @@ route.get('/', (req, res) =>{
 })
 
 
-//////////////list of homes//////////////
 var storage = multer.diskStorage({
     destination: "./public/avatars",
     filename: function (req, file, cb) {
@@ -74,10 +71,10 @@ route.post('/productoimg', (req, res) => {
         var aux = new  Array();
         if (data.length == 1 && data[0] == "") {
           producto.gallery.push(`${HOST}:7777/api/v1.0/productoimg/` + infoimg._id)
-                          //  ("http://localhost:4030/api/v1.0/homeimg/" + infoimg._id)
+
         } else {
           aux.push(`${HOST}:7777/api/v1.0/productoimg/` + infoimg._id);
-                //  ("http://localhost:4030/api/v1.0/homeimg/" + infoimg._id
+
           data = data.concat(aux);
           producto.gallery = data;
         }
@@ -125,11 +122,9 @@ route.get(/productoimg\/[a-z0-9]{1,}$/, (req, res) => {
 
 
 
-//var homeid;
 var productoid;
 
-///////////////////////////// var homeid = productoid
-///////////route.post("/home", (req, res) => {
+
   route.post("/producto", (req, res) => {
     //Ejemplo de validacion
   console.log("request; ",req.body)
@@ -147,12 +142,12 @@ var productoid;
       contacto: req.body.contacto
     };
 
-  ///  var homeData = new Home(home);
+
   var productoData = new Producto(producto)
 
     productoData.save().then( (rr) => {
       //content-type
-      productoid=rr._id;                           //variable que guarda el id de home
+      productoid=rr._id;                           //variable que guarda el id de producto
       res.status(200).json({
         "id" : rr._id,
         "msn" : "producto registrado con exito "
@@ -229,43 +224,6 @@ date: {type:Date,default:Date.now()}
     }
     });
 
-//////////////////////////////7restaurantes reutilizado
-/*route.get("/producto" ,(req, res) => {
-  var skip = 0;
-  var limit = 10;
-  if (req.query.skip != null) {
-    skip = req.query.skip;
-  }
-
-  if (req.query.limit != null) {
-    limit = req.query.limit;
-  }
-  Producto.find({}).skip(skip).limit(limit).exec((err, docs) => {
-    if (err) {
-      res.status(500).json({
-        "msn" : "Error en la db"
-      });
-      return;
-    }
-    res.status(200).json(docs);
-  });
-});*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -286,7 +244,7 @@ date: {type:Date,default:Date.now()}
 
 
 
-    //home busqueda por _id homee//////
+    // busqueda por _id //////
     route.get('/productoid/:id', (req, res) => {
       var idh = req.params.id;
       console.log(idh)
@@ -301,7 +259,7 @@ date: {type:Date,default:Date.now()}
         res.status(200).send(docs);
       });
     });
-    ///////////////// end homes/////////////////
+    ///////////////// fin productos////////////////
 
 
 
@@ -436,7 +394,7 @@ route.get('/actualizarIP/:ip',(req,res)=>{
     docs.map(producto=>{
       let id=producto._id
       let newImgGallery=[]
-      // res.send(home.gallery)
+
       for(let i=0;i<producto.gallery.length;i++){
         let imgGallery= producto.gallery[i]
         let ipImg=imgGallery.split('/')
@@ -466,7 +424,7 @@ route.get('/actualizarIP/:ip',(req,res)=>{
 })
 
 
-// mostra todos nombres de productos////////////////////////////////
+// mostrar todos nombres de productos////////////////////////////////
 route.get("/nombre", (req, res, next) => {
 
   Producto.find({}).exec((err, datos) =>{
@@ -480,7 +438,6 @@ route.get("/nombre", (req, res, next) => {
         //lat: data.lat
       }
     ))
-    //console.log(vecindario);
 
     console.log(datos)
     console.log(err);
