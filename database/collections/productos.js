@@ -19,9 +19,3 @@ var productoSchema = new Schema({
 });
 var producto = mongoose.model("productos", productoSchema);
 module.exports = producto;
-
-
-//homeSchema = productoSchema
-///home = producto
-
-//homes = productos
